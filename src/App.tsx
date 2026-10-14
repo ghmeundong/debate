@@ -30,7 +30,7 @@ type Request = { id: number; name: string; side: Side; target: string; reason: s
 type JudgeScore = { pro: number; con: number; rationale: string }
 type OllamaMessage = { role: 'system' | 'user' | 'assistant'; content: string }
 
-const debateModel = 'qwen2.5:3b'
+const defaultDebateModel = 'qwen2.5:3b'
 const judgeModel = 'qwen2.5:1.5b'
 const freeMonitorIntervalMs = 5000
 
@@ -132,9 +132,18 @@ function App() {
   const [monitorBusy, setMonitorBusy] = useState(false)
   const [draft, setDraft] = useState<Statement | null>(null)
   const [topicChecking, setTopicChecking] = useState(false)
+  const [debateModel, setDebateModel] = useState(defaultDebateModel)
   const generationController = useRef<AbortController | null>(null)
   const monitorBusyRef = useRef(false)
   const transcriptListRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    void window.debate?.getRuntimeConfig().then((config) => {
+      if (config.dialogueModel) setDebateModel(config.dialogueModel)
+    }).catch((error: unknown) => {
+      console.warn('Could not read installed model configuration:', error)
+    })
+  }, [])
 
   useEffect(() => {
     const transcriptList = transcriptListRef.current

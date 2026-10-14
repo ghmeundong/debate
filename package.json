@@ -3,10 +3,17 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
+  "main": "electron/main.cjs",
   "scripts": {
     "dev": "vite",
+    "dev:desktop": "concurrently -k \"vite --host 127.0.0.1\" \"wait-on tcp:5173 && electron .\"",
     "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "icon:generate": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File build/create-icon.ps1",
+    "dist:prepare": "npm run icon:generate && npm run build",
+    "dist:package": "electron-builder --win",
+    "dist": "npm run dist:prepare && npm run dist:package -- --config.directories.output=release/debate-build",
+    "dist:dir": "npm run dist:prepare && npm run dist:package -- --dir"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",
@@ -17,7 +24,11 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8",
     "typescript": "~5.6.2",
-    "vite": "^6.0.5"
+    "vite": "^6.0.5",
+    "wait-on": "^8.0.2"
   }
 }

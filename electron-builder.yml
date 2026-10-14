@@ -1,0 +1,24 @@
+appId: com.ghmeundong.debatestudio
+productName: Debate Studio
+directories:
+  buildResources: build
+files:
+  - dist/**
+  - electron/**
+  - package.json
+extraResources:
+  - from: build/debate.ico
+    to: debate.ico
+win:
+  icon: build/debate.ico
+  target: nsis
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  include: build/installer.nsh
+  runAfterFinish: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  installerIcon: build/debate.ico
+  uninstallerIcon: build/debate.ico
+  installerHeaderIcon: build/debate.ico

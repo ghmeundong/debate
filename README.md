@@ -9,6 +9,8 @@ npm install
 npm run dev
 ```
 
+Run the desktop app in development with `npm run dev:desktop`.
+
 `npm run build` runs the TypeScript project build and produces the static app in `dist/`.
 
 ## Included in this prototype
@@ -26,7 +28,13 @@ npm run dev
 
 The transcript and interruption requests start empty. Generated speeches, topic checks, free-debate monitoring, and jury scores use the local Ollama API. All current session state stays in browser memory and is lost on refresh by design; no backend or persistence is included.
 
-During `npm run dev`, Vite proxies `/ollama/*` to `http://127.0.0.1:11434`, avoiding browser CORS configuration. The proxy is development-only; a production deployment should put a local backend such as FastAPI between the browser and Ollama and handle session persistence there.
+During `npm run dev`, Vite proxies `/ollama/*` to `http://127.0.0.1:11434`. The packaged Electron app serves its static UI and proxies Ollama through a loopback-only local server, so Ollama is never exposed to the network.
+
+## Windows installer
+
+Build the Windows installer inside this project with `npm run dist`. The NSIS setup page lets the user choose Qwen2.5 3B, 7B, or 14B for debate generation. Setup installs Ollama if needed, then downloads the selected dialogue model and Qwen2.5 1.5B for topic checks and judging. The uninstaller asks whether to remove Ollama and the two Debate Studio models.
+
+The Windows app, installer, and uninstaller use the speech-bubble brand icon generated from `build/create-icon.ps1`.
 
 ## Architecture notes
 
