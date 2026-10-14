@@ -1,0 +1,116 @@
+.status-light.online {
+  background: #74bd8d;
+  box-shadow: 0 0 0 3px #355447;
+}
+
+.runtime-indicator.connected {
+  background: #70af7b;
+  box-shadow: 0 0 0 2px #e2f0e5;
+}
+
+.demo-pill.online-pill {
+  color: #3e7650;
+  background: #e5f1e8;
+}
+
+.demo-pill.online-pill span {
+  background: #57966d;
+}
+
+.check-topic:disabled,
+.request-actions button:disabled,
+.judge-button:disabled,
+.speak-button:disabled,
+.stop-button:disabled,
+.monitor-button:disabled,
+.phase-tab:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.structured-controls {
+  display: grid;
+  gap: 9px;
+}
+
+.moderator-prompt {
+  display: grid;
+  gap: 5px;
+  color: #57645b;
+  font-size: 10px;
+}
+
+.moderator-prompt > span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+}
+
+.moderator-prompt small {
+  color: #9aa39c;
+  font-weight: 400;
+}
+
+.moderator-prompt textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 46px;
+  border: 1px solid #e3e9e3;
+  border-radius: 5px;
+  background: #fbfcfa;
+  color: #39463d;
+  padding: 8px 9px;
+  font: inherit;
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.moderator-prompt textarea::placeholder {
+  color: #a0a9a2;
+}
+
+.topic-hint {
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.judge-rationales {
+  display: grid;
+  gap: 7px;
+  max-height: 190px;
+  overflow: auto;
+  padding: 8px 0;
+  border-top: 1px solid #edf0ed;
+}
+
+.rationale-row strong {
+  color: #657168;
+  font-size: 8px;
+}
+
+.rationale-row p {
+  margin: 3px 0 0;
+  color: #7c867f;
+  font-size: 9px;
+  line-height: 1.55;
+}
+
+.speaker-callout.start-callout {
+  margin-top: 5px;
+}
+
+.speaker-callout .speaker-controls .stop-button:disabled {
+  background: #f7f8f6;
+}
+
+.transcript-list {
+  max-height: 56vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+.transcript-list .statement {
+  flex: 0 0 auto;
+}

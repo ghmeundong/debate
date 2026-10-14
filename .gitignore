@@ -1,0 +1,12 @@
+node_modules/
+dist/
+*.local
+
+# TypeScript build cache
+*.tsbuildinfo
+
+# Editor and OS files
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db
